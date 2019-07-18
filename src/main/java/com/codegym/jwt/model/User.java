@@ -1,5 +1,7 @@
 package com.codegym.jwt.model;
 
+import org.hibernate.annotations.NaturalId;
+
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
@@ -23,6 +25,7 @@ public class User {
     private String username;
 
     @NotBlank
+    @NaturalId
     @Size(max = 50)
     @Email
     private String email;
