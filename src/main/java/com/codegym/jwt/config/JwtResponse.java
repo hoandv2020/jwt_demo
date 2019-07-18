@@ -10,9 +10,8 @@ public class JwtResponse {
     private String username;
     private Collection<? extends GrantedAuthority> authorities;
 
-    public JwtResponse(String token, String type, String username, Collection<? extends GrantedAuthority> authorities) {
+    public JwtResponse(String token, String username, Collection<? extends GrantedAuthority> authorities) {
         this.token = token;
-        this.type = type;
         this.username = username;
         this.authorities = authorities;
     }

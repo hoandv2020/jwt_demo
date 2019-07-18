@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Component;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 @Component
@@ -13,8 +14,8 @@ public class JwtProvider {
     @Value("@{jwtSecret}")
     private String jwtSecret;
 
-    @Value("@{jwtExpiration}")
-    private String jwtExpiration;
+//    @Value("@{jwtExpiration}")
+//    private String jwtExpiration;
 
     public String generateToken(Authentication authentication) {
         UserPrinciple userPrinciple = (UserPrinciple) authentication.getPrincipal();
@@ -22,8 +23,7 @@ public class JwtProvider {
         return Jwts.builder()
                 .setSubject((userPrinciple.getUsername()))
                 .setIssuedAt(new Date())
-                .setExpiration(new Date((new Date().getTime() + Integer.parseInt(jwtExpiration))*1000))
-                .signWith(SignatureAlgorithm.ES512, jwtSecret)
+                .signWith(SignatureAlgorithm.HS512, jwtSecret)
                 .compact();
     }
 
